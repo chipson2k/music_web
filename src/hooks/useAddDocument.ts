@@ -1,7 +1,6 @@
 import {
   collection,
   DocumentData,
-  getDocs,
   onSnapshot,
   query,
   QuerySnapshot,
@@ -64,7 +63,6 @@ export const useGettAllDocuments = (collectionName: string) => {
         }
       }
     );
-    console.log(data)
     return () => unsubscribe();
   }, []);
   return data;

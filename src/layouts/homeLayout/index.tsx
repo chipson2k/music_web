@@ -11,14 +11,12 @@ import {
   IonPage,
   IonTabBar,
   IonTabButton,
-  IonTabs,
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
 import { signOut } from "firebase/auth";
 import { add, musicalNotes, search } from "ionicons/icons";
 import React, { useEffect, useMemo } from "react";
-import { useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useHistory, useLocation } from "react-router-dom";
 import { Dispatch } from "redux";
@@ -40,9 +38,9 @@ const HomeLayout = ({ children }: React.PropsWithChildren<{}>) => {
   const songList = useGettAllDocuments("musics") as SongModel[];
 
   useEffect(() => {
-    songListDispatch(setSongList(songList))
-    console.log(songList)
-  },[songList])
+    songListDispatch(setSongList(songList));
+    console.log(songList);
+  }, [songList]);
 
   const logout = async () => {
     await signOut(getAppAuth);
@@ -94,9 +92,7 @@ const HomeLayout = ({ children }: React.PropsWithChildren<{}>) => {
           {children}
           <div className="home-layout-content-padding"></div>
         </IonContent>
-        <IonFooter>
-          {song?.id && <PlayMusicTab song={song} />}
-        </IonFooter>
+        <IonFooter>{song?.id && <PlayMusicTab song={song} />}</IonFooter>
         <IonTabBar slot="bottom">
           <IonTabButton tab="list" href="/list">
             <IonIcon aria-hidden="true" icon={musicalNotes} />

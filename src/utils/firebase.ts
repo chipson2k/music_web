@@ -1,4 +1,3 @@
-import { User } from "firebase/auth";
 import { addDoc, collection } from "firebase/firestore";
 import { getAppFirestore } from "../config/firebase";
 export const addDocumentToCollection = async (

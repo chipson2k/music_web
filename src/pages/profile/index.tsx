@@ -9,7 +9,7 @@ import {
 } from "@ionic/react";
 import { signOut } from "firebase/auth";
 import { arrowBack, person } from "ionicons/icons";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { NavLink, useHistory } from "react-router-dom";
 import { getAppAuth } from "../../config/firebase";
 import "./ProfilePage.css";
@@ -35,7 +35,7 @@ const ProfilePage = () => {
         email: user.email || "",
       });
     }
-  },[])
+  }, []);
 
   const logout = async () => {
     await signOut(getAppAuth);

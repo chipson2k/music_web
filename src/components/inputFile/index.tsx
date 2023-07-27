@@ -1,4 +1,3 @@
-import { RefCallBack } from "react-hook-form";
 import "./InputFile.css";
 export namespace IconInputType {
   export type Props = {
