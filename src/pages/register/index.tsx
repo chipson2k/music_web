@@ -5,6 +5,8 @@ import {
   IonHeader,
   IonIcon,
   IonImg,
+  IonRow,
+  IonText,
   IonToolbar,
 } from "@ionic/react";
 import { arrowBack, lockClosed, mailOpen, person } from "ionicons/icons";
@@ -15,6 +17,7 @@ import "./RegisterPage.css";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { getAppAuth } from "../../config/firebase";
 import { addDocumentToCollection } from "../../utils/firebase";
+import { useState } from "react";
 
 interface RegisterForm {
   name: string;
@@ -23,6 +26,7 @@ interface RegisterForm {
 }
 const RegisterPage = () => {
   const history = useHistory();
+  const [errorMessage, setErrorMessage] = useState("");
   const {
     handleSubmit,
     control,
@@ -37,11 +41,11 @@ const RegisterPage = () => {
         data.password
       );
 
-      const newUser = userCredential.user
-      await updateProfile(newUser, { displayName: data.name })
+      const newUser = userCredential.user;
+      await updateProfile(newUser, { displayName: data.name });
       history.push("/");
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      setErrorMessage(error.message);
     }
   };
 
@@ -123,6 +127,9 @@ const RegisterPage = () => {
         >
           Sign up
         </IonButton>
+        <IonRow className="ion-justify-content-center">
+          <IonText color="danger">{errorMessage}</IonText>
+        </IonRow>
       </IonContent>
     </>
   );
